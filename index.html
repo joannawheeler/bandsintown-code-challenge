@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bandsintown</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    //localhost:3000/?artist=:url_escaped_artist_name
+    //add this to the bandsintown api request in the GET path
+    var urlArtist = getUrlParameter('artist');
+    console.log(urlArtist);
+
+    // console.log(it.slice(1))
+
+    var artistName = encodeURIComponent(urlArtist.slice(1));
+    console.log(artistName);
+
+    var auth = "?app_id=bit_challenge";
+    var requestURL = 'https://rest.bandsintown.com/artists/' + artistName + auth;
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = "json";
+    request.send();
+
+    request.onload = function() {
+        var artistData = request.response;
+        var responseArtistName = artistData.name;
+        var artistThumbUrl = artistData.thumb_url;
+        document.getElementById("artistN").innerHTML = responseArtistName;
+        document.getElementById("thumbImage").src = artistThumbUrl;
+    };
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <div id="leftImage">
+            <img id="thumbImage">
+        </div>
+        <div id="textRightOfImage">
+            <p id="artistN"></p>
+            <p id="upcomingEvents">Upcoming Events</p>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

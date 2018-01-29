@@ -1,0 +1,48 @@
+/*.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}*/
+
+.header {
+  width: 33%;
+  display: inline-block;
+  border: green;
+}
+
+
+#leftImage, #textRightOfImage {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+img {
+  display: block;
+  height: 50%;
+  width: 50%;
+}
+
+/* desktop styling */
+@media (min-width: 576px) {
+    .header {
+        margin-top: 54px;
+        margin-left: 156px;
+        margin-right: 156px;
+    }
+}
+
+
+
+/* mobile styling */
+@media (max-width: 575px) {
+    .header {
+        margin-top: 46px;
+        margin-left: 22px;
+        margin-right: 22px;
+    }
+}
