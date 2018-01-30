@@ -25,9 +25,9 @@
     console.log(artistName);
 
     var auth = "?app_id=bit_challenge";
-    var requestURL = 'https://rest.bandsintown.com/artists/' + artistName + auth;
+    var requestURL = 'https://rest.bandsintown.com/artists/' + artistName;
     var request = new XMLHttpRequest();
-    request.open('GET', requestURL);
+    request.open('GET', requestURL + auth);
     request.responseType = "json";
     request.send();
 
@@ -38,6 +38,26 @@
         document.getElementById("artistN").innerHTML = responseArtistName;
         document.getElementById("thumbImage").src = artistThumbUrl;
     };
+
+    var secondRequest = new XMLHttpRequest();
+    secondRequest.open('GET', requestURL + '/events' + auth);
+    secondRequest.responseType = "json";
+    secondRequest.send();
+
+    secondRequest.onload = function() {
+        var artistEvents = secondRequest.response;
+        console.log(artistEvents);
+        for (var i=0; i < artistEvents.length; i++) {
+            console.log(artistEvents[i].datetime);
+        }
+        var responseEventDateTime = artistEvents.datetime;
+        //TODO: get venue object and grab venue and city data
+        // var venue = artistEvents.venue.
+        // console.log(responseEventDateTime);
+    }
+
+
+    // var urlEvents =
     </script>
 </head>
 
@@ -47,10 +67,9 @@
             <img id="thumbImage">
         </div>
         <div id="textRightOfImage">
-            <p id="artistN"></p>
+            <strong id="artistN"></strong>
             <p id="upcomingEvents">Upcoming Events</p>
         </div>
-    </div>
     </div>
 </body>
 
