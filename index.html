@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bandsintown</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
     <script>
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -17,15 +18,15 @@
     //localhost:3000/?artist=:url_escaped_artist_name
     //add this to the bandsintown api request in the GET path
     var urlArtist = getUrlParameter('artist');
-    console.log(urlArtist);
+    // console.log(urlArtist);
 
     // console.log(it.slice(1))
 
     var artistName = encodeURIComponent(urlArtist.slice(1));
-    console.log(artistName);
+    // console.log(artistName);
 
     var auth = "?app_id=bit_challenge";
-    var requestURL = 'https://rest.bandsintown.com/artists/' + artistName;
+    var requestURL = "https://rest.bandsintown.com/artists/" + artistName;
     var request = new XMLHttpRequest();
     request.open('GET', requestURL + auth);
     request.responseType = "json";
@@ -40,24 +41,41 @@
     };
 
     var secondRequest = new XMLHttpRequest();
-    secondRequest.open('GET', requestURL + '/events' + auth);
+    secondRequest.open('GET', requestURL + "/events" + auth);
     secondRequest.responseType = "json";
     secondRequest.send();
 
     secondRequest.onload = function() {
         var artistEvents = secondRequest.response;
-        console.log(artistEvents);
-        for (var i=0; i < artistEvents.length; i++) {
-            console.log(artistEvents[i].datetime);
+        for (var i = 0; i < artistEvents.length; i++) {
+            //PRINT MONTH AND DATE
+            var dateAndTime = artistEvents[i].datetime;
+            console.log(moment(dateAndTime).format("MMM D"));
+
+            //PRINT VENUE NAME
+            var venueName = artistEvents[i].venue.name;
+            console.log(venueName);
+
+            //PRINT CITY, STATE or CITY, REGION
+            var venueLocation;
+            if (artistEvents[i].venue.country === "United States") {
+                venueLocation = venue.city + ", " + venue.region;
+            } else {
+                venueLocation = artistEvents[i].venue.city + ", " + artistEvents[i].venue.country;
+                console.log(venueLocation);
+            }
+
+            //TICKETS BUTTON that links to URL
+            if (artistEvents[i].offers.length >= 1) {
+                var newButton = document.createElement("a");
+                newButton.innerHTML = "Tickets";
+                newButton.setAttribute('href', artistEvents[i].offers[0].url);
+                console.log(artistEvents[i].offers[0].url);
+                var buttons = document.getElementById("buttons");
+                buttons.appendChild(newButton);
+            }
         }
-        var responseEventDateTime = artistEvents.datetime;
-        //TODO: get venue object and grab venue and city data
-        // var venue = artistEvents.venue.
-        // console.log(responseEventDateTime);
-    }
-
-
-    // var urlEvents =
+    };
     </script>
 </head>
 
@@ -71,6 +89,7 @@
             <p id="upcomingEvents">Upcoming Events</p>
         </div>
     </div>
+    <div id="buttons"></div>
 </body>
 
 </html>
