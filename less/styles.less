@@ -63,7 +63,6 @@ span {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-bottom: 45px;
     margin-top: 45px;
-    white-space: nowrap;
 }
 
 .monthDate {
@@ -84,8 +83,6 @@ span {
     font-size: 20px;
     width: 350px;
 }
-
-.ticketsButton {}
 
 .ticketsButton a {
     color: #00b4b3;
@@ -112,50 +109,84 @@ span {
     color: #A0A0A0;
 }
 
-
-
-
-
-/* desktop styling */
-
-// @media (min-width: 576px) {
-//     .header {
-//         /*margin-top: 54px;*/
-//         margin-top: 3.25%;
-//         margin-left: 12%;
-//         margin-right: 12%;
-//     }
-// }
-// @media (min-width: 576px) {
-//     #table {
-//         margin-top: 44px;
-//         margin-left: 12%;
-//         margin-right: 12%;
-//         margin-bottom: 60px;
-//     }
-// }
-
 /* mobile styling */
 
 @media (max-width: 575px) {
     #top {
-        width: 500px;
-        // margin: 0 auto;
-        margin-top: 55px;
+        width: 100%;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 40px;
+    }
+
+    #table {
+        width: 100%;
+        // margin-top: "";
     }
 
     img {
         display: block;
-        height: 100px;
-        width: 100px;
+        height: 85px;
+        width: 85px;
     }
 
     #artistN {
-        font-size: 29px;
+        font-size: 22px;
     }
 
     #upcomingEvents {
         padding-left: 16px;
-        font-size: 29px;
+        font-size: 22px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    span {
+        flex: 0 0 100%;
+        // border: 1px solid red;
+        box-sizing: border-box;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .monthDate {
+        order: 1;
+        font-weight: bold;
+        font-size: 20px;
+        width: 100%;
+        margin-left: 15px;
+        // border: 3px solid blue;
+    }
+
+    .venueName {
+        order: 2;
+        font-size: 10px;
+        width: 100%;
+        // border: 3px solid green;
+        flex: 0 0 50%;
+    }
+
+    .ticketsButton {
+        order: 3;
+        flex: 0 0 50%;
+        width: 100%;
+        text-align: right;
+        font-size: 10px;
+    }
+
+    .ticketsButton a {
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .venueLocation {
+        order: 4;
+        width: 100%;
+        font-size: 10px;
     }
 }
