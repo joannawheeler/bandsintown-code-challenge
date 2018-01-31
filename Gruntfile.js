@@ -4,7 +4,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         connect: {
             example: {
-                port: 1337,
+                port: 3000,
                 base: '../bandsintown'
             }
         },

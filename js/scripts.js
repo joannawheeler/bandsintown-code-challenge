@@ -18,9 +18,9 @@
 
     artistRequest.onload = function() {
         var artistData = artistRequest.response;
-        var  resArtistName = artistData.name;
+        var resArtistName = artistData.name;
         var resArtistThumbUrl = artistData.thumb_url;
-        document.getElementById("artistName").textContent =  resArtistName;
+        document.getElementById("artistName").textContent = resArtistName;
         document.getElementById("thumbImage").src = resArtistThumbUrl;
     };
 

@@ -115,7 +115,8 @@ a:hover {
 }
 
 
-/* mobile styling */
+
+/* Mobile View */
 
 @media (max-width: 575px) {
     #artistHeader {
