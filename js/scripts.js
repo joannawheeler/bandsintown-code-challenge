@@ -5,53 +5,45 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
-    //localhost:3000/?artist=:url_escaped_artist_name
-    //add this to the bandsintown api request in the GET path
     var urlArtist = getUrlParameter('artist');
-    // console.log(urlArtist);
-
-    // console.log(it.slice(1))
 
     var artistName = encodeURIComponent(urlArtist.slice(1));
-    // console.log(artistName);
 
     var auth = "?app_id=bit_challenge";
     var requestURL = "https://rest.bandsintown.com/artists/" + artistName;
-    var request = new XMLHttpRequest();
-    request.open('GET', requestURL + auth);
-    request.responseType = "json";
-    request.send();
+    var artistRequest = new XMLHttpRequest();
+    artistRequest.open('GET', requestURL + auth);
+    artistRequest.responseType = "json";
+    artistRequest.send();
 
-    request.onload = function() {
-        var artistData = request.response;
-        var responseArtistName = artistData.name;
-        var artistThumbUrl = artistData.thumb_url;
-        document.getElementById("artistN").innerHTML = responseArtistName;
-        document.getElementById("thumbImage").src = artistThumbUrl;
+    artistRequest.onload = function() {
+        var artistData = artistRequest.response;
+        var  resArtistName = artistData.name;
+        var resArtistThumbUrl = artistData.thumb_url;
+        document.getElementById("artistName").textContent =  resArtistName;
+        document.getElementById("thumbImage").src = resArtistThumbUrl;
     };
 
-    var secondRequest = new XMLHttpRequest();
-    secondRequest.open('GET', requestURL + "/events" + auth);
-    secondRequest.responseType = "json";
-    secondRequest.send();
+    var eventsRequest = new XMLHttpRequest();
+    eventsRequest.open('GET', requestURL + "/events" + auth);
+    eventsRequest.responseType = "json";
+    eventsRequest.send();
 
-    secondRequest.onload = function() {
-        var artistEvents = secondRequest.response;
-
+    eventsRequest.onload = function() {
+        var artistEvents = eventsRequest.response;
         if (artistEvents.length >= 1) {
             for (var i = 0; i < artistEvents.length; i++) {
-                var table = document.getElementById("table");
-                table.className = "table";
+                var eventsTable = document.getElementById("eventsTable");
                 var row = document.createElement("div");
                 row.className = "row";
-                table.appendChild(row);
+                eventsTable.appendChild(row);
 
                 var dateAndTime = artistEvents[i].datetime;
                 var monthDate = moment(dateAndTime).format("MMM D");
-                var newMonthDateNode = document.createElement("span");
-                newMonthDateNode.className = "monthDate";
-                newMonthDateNode.textContent = monthDate;
-                row.appendChild(newMonthDateNode);
+                var newMonthDate = document.createElement("span");
+                newMonthDate.className = "monthDate";
+                newMonthDate.textContent = monthDate;
+                row.appendChild(newMonthDate);
 
                 var venueName = artistEvents[i].venue.name;
                 var newVenueName = document.createElement("span");
@@ -61,7 +53,7 @@
 
                 var venueLocation;
                 if (artistEvents[i].venue.country === "United States") {
-                    venueLocation = venue.city + ", " + venue.region;
+                    venueLocation = artistEvents[i].venue.city + ", " + artistEvents[i].venue.region;
                 } else {
                     venueLocation = artistEvents[i].venue.city + ", " + artistEvents[i].venue.country;
                 }
@@ -83,12 +75,11 @@
                     newTicketButton.className = "ticketsButton";
                     newTicketButton.textContent = "";
                 }
-
                 row.appendChild(newTicketButton);
             }
         } else {
-            var tableElem = document.getElementById("table");
+            var tableElem = document.getElementById("eventsTable");
             tableElem.textContent = "No upcoming events.";
-            tableElem.className = "noUpcomingEvents";
+            tableElem.className = "text-noUpcomingEvents";
         }
     };

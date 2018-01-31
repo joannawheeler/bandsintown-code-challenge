@@ -16,18 +16,9 @@ module.exports = function(grunt) {
                 "css/styles.css": "less/styles.less"
             }
         }
-        // ,
-        // watch: {
-        //   files:['../bandsintown/**'],
-        //   tasks:'',
-        //   options: {
-        //     livereload: true
-        //   }
-        // }
     });
 
     grunt.loadNpmTasks('grunt-connect');
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('default', ['connect:example', 'less']);
 };

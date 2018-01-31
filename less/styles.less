@@ -7,20 +7,20 @@ body {
     width: 100%;
 }
 
-#top {
+#artistHeader {
     width: 1220px;
     margin: 0 auto;
     margin-top: 57px;
 }
 
-#table {
+#eventsTable {
     width: 1220px;
     margin: 0 auto;
     margin-top: 25px;
     margin-bottom: 40px;
 }
 
-#leftImage,
+#artistImage,
 #textRightOfImage {
     display: inline-block;
     vertical-align: middle;
@@ -33,7 +33,7 @@ img {
     border-radius: 5px;
 }
 
-#artistN {
+#artistName {
     margin: 0;
     padding: 0;
     padding-left: 16px;
@@ -44,7 +44,7 @@ img {
     color: #00b4b3;
 }
 
-#upcomingEvents {
+#text-upcomingEvents {
     margin: 0;
     padding: 0;
     padding-left: 16px;
@@ -99,14 +99,14 @@ span {
 
 a:hover {
     color: white;
-    background-color: #00b4b3;
+    background-color: #00b4b3
 }
 
 .row {
     border-bottom: 2px solid #D9D9D9;
 }
 
-.noUpcomingEvents {
+.text-noUpcomingEvents {
     text-align: center;
     padding-top: 190px;
     font-size: 29px;
@@ -115,19 +115,18 @@ a:hover {
 }
 
 
-
 /* mobile styling */
 
 @media (max-width: 575px) {
-    #top {
+    #artistHeader {
         width: 100%;
         margin-left: 15px;
         margin-right: 15px;
         margin-top: 40px;
     }
 
-    #table {
-        width: 100%; // margin-top: "";
+    #eventsTable {
+        width: 100%;
     }
 
     img {
@@ -136,11 +135,11 @@ a:hover {
         width: 85px;
     }
 
-    #artistN {
+    #artistName {
         font-size: 22px;
     }
 
-    #upcomingEvents {
+    #text-upcomingEvents {
         padding-left: 16px;
         font-size: 22px;
     }
@@ -153,7 +152,7 @@ a:hover {
     }
 
     span {
-        flex: 0 0 100%; // border: 1px solid red;
+        flex: 0 0 100%;
         box-sizing: border-box;
         margin-top: 4px;
         margin-bottom: 4px;
@@ -171,8 +170,8 @@ a:hover {
     .venueName {
         order: 2;
         font-size: 15px;
-        width: 100%; // border: 3px solid green;
-        flex: 0 0 70%; // margin-left: 15px;
+        width: 100%;
+        flex: 0 0 70%;
         padding-left: 15px;
     }
 
@@ -202,7 +201,7 @@ a:hover {
         margin-bottom: 25px;
     }
 
-    .noUpcomingEvents {
+    .text-noUpcomingEvents {
         font-size: 24px;
         padding-top: 140px;
     }
