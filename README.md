@@ -1,4 +1,4 @@
-#  Bandsintown Code Challenge
+#  Bandsintown Code Challenge (created with VanillaJS)
 An upcoming events view app for any artist using the Bandsintown public API. The app shows upcoming tour dates for the specified artist.
 
 
@@ -9,11 +9,11 @@ An upcoming events view app for any artist using the Bandsintown public API. The
 npm install
 ```
 ```
-grunt 
+grunt
 ```
 
-  
-2) The view will render on the root path of the application with the artist specified by the following query param: 
+
+2) The view will render on the root path of the application with the artist specified by the following query param:
 
 http://localhost:3000/?artist=:url_escaped_artist_name
 
